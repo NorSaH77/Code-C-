@@ -34,7 +34,7 @@ class date{
 
         void check(){
             //nam nhuan
-            if(nam % 400 == 0 && nam > 0 && nam <= 2024){
+            if(nam % 4 == 0 && nam % 100 != 0 && nam > 0 && nam <= 2024){
                 //thang co 29 ngay
                 if(thang == 2){
                     if(ngay > 29 || ngay <= 0){
@@ -92,7 +92,7 @@ class date{
 
 date operator ++ (date& dt){
     //nam nhuan
-    if(dt.nam % 400 == 0){
+    if(dt.nam % 4 == 0 && dt.nam % 100 != 0){
         //thang 29 ngay
         if(dt.thang == 2){
             if(dt.ngay == 29){
