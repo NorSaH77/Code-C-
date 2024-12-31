@@ -91,7 +91,6 @@ class date{
 };
 
 date operator ++ (date& dt){
-    date temp = dt;
     //nam nhuan
     if(dt.nam % 400 == 0){
         //thang 29 ngay
@@ -174,7 +173,61 @@ date operator ++ (date& dt){
 };
 
 date operator -- (date& dt){
-
+    //nam nhuan
+    if(dt.nam % 4 == 0 && dt.nam % 100 != 0){
+        //29 ngay
+        if(dt.thang == 3 && dt.ngay == 1){
+            dt.thang--;
+            dt.ngay = 29;
+        }
+        //31 ngay
+        else if((dt.thang == 11 || dt.thang == 9 || dt.thang == 8 || dt.thang == 6 || dt.thang == 4 || dt.thang == 2) && dt.ngay ==1){
+            dt.thang--;
+            dt.ngay == 31;        
+        }
+        // 1/1
+        else if(dt.ngay == 1 && dt.thang == 1){
+            dt.thang = 12;
+            dt.ngay = 31;
+            dt.nam--;
+        }
+        //ngay bthg 
+        else if (dt.ngay == 1){
+            dt.thang--;
+            dt.ngay = 30;
+        }
+        else{
+            dt.ngay--;
+        }
+    }
+    //nam k nhuan
+    else{
+        //28 ngay
+        if(dt.thang == 3 && dt.ngay == 1){
+            dt.thang--;
+            dt.ngay = 28;
+        }
+        // 31 ngay
+        else if((dt.thang == 11 || dt.thang == 9 || dt.thang == 8 || dt.thang == 6 || dt.thang == 4 || dt.thang == 2) && dt.ngay == 1){
+            dt.thang--;
+            dt.ngay == 31;        
+        }
+        // 1/1
+        else if(dt.ngay == 1 && dt.thang == 1){
+            dt.thang = 12;
+            dt.ngay = 31;
+            dt.nam--;
+        }
+        //ngay bthg 
+        else if (dt.ngay == 1){
+            dt.thang--;
+            dt.ngay = 30;
+        }
+        else{
+            dt.ngay--;
+        }
+    }
+    return dt;
 };
 
 int main(){
@@ -182,7 +235,9 @@ int main(){
     dt.nhap();
     dt.check();
     dt.xuat();
-    ++dt;
+    //++dt;
+    //dt.xuat();
+    --dt;
     dt.xuat();
     return 0;
 }
